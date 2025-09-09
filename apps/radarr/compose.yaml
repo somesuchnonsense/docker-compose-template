@@ -19,9 +19,9 @@ services:
       - "traefik.http.routers.radarr.tls.certresolver=letsencrypt"
       - "traefik.http.routers.radarr.middlewares=authelia@docker"
       - "traefik.http.services.radarr.loadbalancer.server.port=7878"
-    depends_on:
-      decypharr:
-        condition: service_healthy
+#    depends_on:
+#      decypharr:
+#        condition: service_healthy
     healthcheck:
       test: ["CMD-SHELL", "curl -s http://localhost:7878/ping | grep -q '\"status\": \"OK\"' || exit 1"]
       interval: 1m
@@ -53,9 +53,9 @@ services:
       - "traefik.http.routers.radarr4k.tls.certresolver=letsencrypt"
       - "traefik.http.routers.radarr4k.middlewares=authelia@docker"
       - "traefik.http.services.radarr4k.loadbalancer.server.port=7878"
-    depends_on:
-      decypharr:
-        condition: service_healthy
+#    depends_on:
+ #     decypharr:
+  #      condition: service_healthy
     healthcheck:
       test: ["CMD-SHELL", "curl -s http://localhost:7878/ping | grep -q '\"status\": \"OK\"' || exit 1"]
       interval: 1m
@@ -86,9 +86,9 @@ services:
       - "traefik.http.routers.radarranime.tls.certresolver=letsencrypt"
       - "traefik.http.routers.radarranime.middlewares=authelia@docker"
       - "traefik.http.services.radarranime.loadbalancer.server.port=7878"
-    depends_on:
-      decypharr:
-        condition: service_healthy
+#    depends_on:
+#      decypharr:
+#        condition: service_healthy
     healthcheck:
       test: ["CMD-SHELL", "curl -s http://localhost:7878/ping | grep -q '\"status\": \"OK\"' || exit 1"]
       interval: 1m

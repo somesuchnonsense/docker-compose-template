@@ -17,6 +17,8 @@ services:
       - CATALOG_TTL=86400
       - NO_CACHE=false
       - DEBUG=true
+      - TMDB_SOCKS_PROXY_URL=socks5://warp:1080
+      - DATABASE_URI=sqlite://addon/data/db.sqlite
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.aiometadata.rule=Host(`${AIOMETADATA_HOSTNAME?}`)"

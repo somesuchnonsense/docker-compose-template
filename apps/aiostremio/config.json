@@ -1,14 +1,14 @@
 {
-  "debrid_service": "torbox",
+  "debrid_service": "realdebrid",
   "addon_config": {
       "torrentio": {
-          "debrid_service": "",
-          "debrid_api_key": ""
+          "debrid_service": "realdebrid",
+          "debrid_api_key": "66IPTH6FCFK4JNKJKXKH76MXYDTBDXSXWUBVO3OP2ONSNWFNZICA"
       },
       "comet": {
-          "base_url": "https://comet.elfhosted.com",
-          "debrid_service": "",
-          "debrid_api_key": ""
+          "base_url": "https://comet.somesuchnonsense.cc",
+          "debrid_service": "realdebrid",
+          "debrid_api_key": "66IPTH6FCFK4JNKJKXKH76MXYDTBDXSXWUBVO3OP2ONSNWFNZICA"
       },
       "debridio": {
           "debrid_service": "easydebrid",
@@ -19,10 +19,10 @@
           "debrid_api_key": ""
       }
   },
-  "addon_url": "https://aiostremio.yourdomain.com",
+  "addon_url": "https://aiostremio.somesuchnonsense.cc/",
   "mediaflow_url": "http://mediaflow-proxy:8888",
-  "external_mediaflow_url": "https://mediaflow.your-domain.com",
-  "mediaflow_enabled": true,
+  "external_mediaflow_url": "https://mediaflow.somesuchnonsense.cc/",
+  "mediaflow_enabled": false,
   "cache_ttl_seconds": 604800,
   "buffer_size_mb": 256,
   "chunk_size_mb": 4

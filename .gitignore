@@ -1,1 +1,5 @@
 ..*
+/data
+"olvectl status"apps/stremio-ai-companion
+/apps/authelia/config/notification.txt
+/apps/obsidian-livesync/local.ini

@@ -5,7 +5,7 @@
     "debrids": [
         {
             "name": "realdebrid",
-            "api_key": "",
+            "api_key": "66IPTH6FCFK4JNKJKXKH76MXYDTBDXSXWUBVO3OP2ONSNWFNZICA",
             "folder": "/mnt/remote/realdebrid/__all__/",
             "rate_limit": "250/minute",
             "use_webdav": true,

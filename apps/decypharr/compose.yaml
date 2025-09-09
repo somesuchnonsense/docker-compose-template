@@ -4,7 +4,7 @@ services:
     container_name: decypharr
     restart: unless-stopped
     security_opt:
-      - "apparmor:unconfined"
+      - apparmor:unconfined
     devices:
       - /dev/fuse:/dev/fuse:rwm
     cap_add:
@@ -16,7 +16,7 @@ services:
       - PGID=${PGID}
       - UMASK=002
     volumes:
-      - /mnt:/mnt:rshared
+      - /mnt/:/mnt:rshared
       - ${DOCKER_DATA_DIR}/decypharr:/app
       - ./config.json:/app/config.json
     labels:
@@ -26,6 +26,11 @@ services:
       - "traefik.http.routers.decypharr.tls.certresolver=letsencrypt"
       - "traefik.http.routers.decypharr.middlewares=authelia@docker"
       - "traefik.http.services.decypharr.loadbalancer.server.port=8282"
+    healthcheck:
+      test: ["CMD", "/usr/bin/healthcheck", "--config", "/app/"]
+      interval: 10s
+      timeout: 10s
+      retries: 3
     profiles:
       - decypharr
       - all

@@ -2,18 +2,17 @@ services:
   tweakio:
     image: varthe/tweakio:latest
     container_name: tweakio
-    restart: unless-stopped
-    # Run this container in the same network as warp, so it can access Torrentio
-    # If not blocked by Torrentio, you can remove this line.
-    # Will need to be accesssed at http://warp:3185 if using warp.
-    network_mode: service:warp
-    user: $PUID:$PGID
-    volumes:
-      - ./config.yaml:/app/config.yaml
+    environment:
+      TMDB_API_KEY: f810a6b8ca9372fef1f8204c3bc37f0d # Optional but recommended for best results. See https://www.themoviedb.org/settings/api
+      DEBUG: false
+    ports:
+      - "3185:3185"
+    networks:
+      - tweakio_network
     profiles:
       - all
       - tweakio
-    depends_on:
-      warp:
-        condition: service_healthy
-        restart: true
+
+networks:
+  tweakio_network:
+    external: true

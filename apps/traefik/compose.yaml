@@ -17,7 +17,7 @@ services:
       - '--global.sendAnonymousUsage=false'
       - '--global.checkNewVersion=false'
       - '--log=true'
-      - "--log.level=INFO"
+      - "--log.level=Debug"
       - '--accesslog=true'
       - "--accesslog.filepath=/data/access.log"
       - "--accesslog.bufferingsize=100"

@@ -767,9 +767,17 @@ access_control:
         - '^/media/.*$'
         - '^/openapi/.*$' 
       policy: 'bypass'
+      
+    - domain: '{{ env "TEMPLATE_OBSIDIAN_LIVESYNC_HOSTNAME" }}'
+      policy: 'bypass'
 
     - domain: '*.{{ env "TEMPLATE_DOMAIN" }}'
       policy: 'two_factor'
+
+    - domain: '{{ env "TEMPLATE_TECHNITIUM_HOSTNAME" }}'
+      policy: two_factor
+      subjects:
+        - "group:admins"
 
     ## root domain
     - domain: '{{ env "TEMPLATE_DOMAIN" }}'
