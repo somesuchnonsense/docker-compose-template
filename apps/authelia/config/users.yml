@@ -1,6 +1,6 @@
 users:
     ssnadmin:
-        password: $argon2id$v=19$m=65536,t=3,p=4$sOssOiwM7/80diMnSG6Bow$pH3nxCPtR8RS3Ryykhy+OnefwjEMXylSvRc4oK3iG4A
+        password: "$argon2id$v=19$m=65536,t=3,p=4$sOssOiwM7/80diMnSG6Bow$pH3nxCPtR8RS3Ryykhy+OnefwjEMXylSvRc4oK3iG4A"
         displayname: ssnadmin
         email: onlyelliot@gmail.com
         groups:

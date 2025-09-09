@@ -55,6 +55,9 @@ services:
       - "traefik.http.routers.technitium.tls.certresolver=letsencrypt"
       - "traefik.http.services.technitium.loadbalancer.server.port=5380"
       - "traefik.http.routers.technitium.middlewares=authelia@docker"
+    profiles:
+      - technitium
+      - all
 
 volumes:
     config:

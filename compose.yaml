@@ -1,13 +1,9 @@
 include:
-#  - apps/actual-budget/compose.yaml
   - apps/addon-manager/compose.yaml
-#  - apps/adguard/compose.yaml
   - apps/aiolists/compose.yaml
   - apps/aiometadata/compose.yaml
   - apps/aiostreams/compose.yaml
   - apps/aiostremio/compose.yaml
-  - apps/anime-kitsu/compose.yaml
-#  - apps/apprise/compose.yaml
   - apps/arcane/compose.yaml
   - apps/authelia/compose.yaml
 #  - apps/autosync/compose.yaml
@@ -23,81 +19,52 @@ include:
 #  - apps/discord-tickets/compose.yaml
 #  - apps/dockge/compose.yaml
   - apps/dozzle/compose.yaml
-  - apps/easynews-plus/compose.yaml
-  - apps/easynews-plus-plus/compose.yaml
-  - apps/fivefilters-full-text-rss/compose.yaml
-  - apps/freshrss/compose.yaml
-  - apps/gluetun/compose.yaml
-   - apps/homarr/compose.yaml
+  #- apps/easynews-plus/compose.yaml
+#  - apps/easynews-plus-plus/compose.yaml
+  - apps/homarr/compose.yaml
   - apps/honey/compose.yaml
 #  - apps/huntarr/compose.yaml
-#  - apps/immich/compose.yaml
 #  - apps/iptvboss/compose.yaml
 #  - apps/it-tools/compose.yaml
   - apps/jackett/compose.yaml
 #  - apps/jackettio/compose.yaml
   - apps/jellyfin/compose.yaml
 #  - apps/jellyseer/compose.yaml
-#  - apps/karakeep/compose.yaml
 #  - apps/kometa/compose.yaml
-#  - apps/librespeed/compose.yaml
 #  - apps/mealie/compose.yaml
 #  - apps/mediaflow-proxy/compose.yaml
   - apps/mediafusion/compose.yaml
-#  - apps/minecraft/compose.yaml
 #  - apps/nitter/compose.yaml
-#  - apps/notifiarr/compose.yaml
-#  - apps/ntfy/compose.yaml
 #  - apps/nzbhydra2/compose.yaml
-#  - apps/omg-tv-addon/compose.yaml
 #  - apps/overseerr/compose.yaml
-#  - apps/plausible/compose.yaml
 #  - apps/plex/compose.yaml
 #  - apps/plex-trakt-sync/compose.yaml
 #  - apps/plexio/compose.yaml
-#  - apps/portainer/compose.yaml
+  - apps/portainer/compose.yaml
   - apps/prowlarr/compose.yaml
-#  - apps/quetre/compose.yaml
   - apps/radarr/compose.yaml
-#  - apps/redlib/compose.yaml
-#  - apps/realdebrid-account-monitor/compose.yaml
+  - apps/redlib/compose.yaml
 #  - apps/recyclarr/compose.yaml
-#  - apps/rss-bridge/compose.yaml
 #  - apps/seanime/compose.yaml
 #  - apps/searxng/compose.yaml
   - apps/sonarr/compose.yaml
-#  - apps/speedtest-tracker/compose.yaml
-#  - apps/sshbot/compose.yaml
-#  - apps/stirling-pdf/compose.yaml
-#  - apps/streamystats/compose.yaml
-#  - apps/stremio-account-bootstrapper/compose.yaml
   - apps/stremio-ai-companion/compose.yaml
   - apps/stremio-ai-search/compose.yaml
-#  - apps/stremio-catalog-providers/compose.yaml
-  #- apps/stremio-jackett/compose.yaml
 #  - apps/stremio-letterboxd/compose.yaml
   #- apps/stremio-server/compose.yaml
-  #- apps/stremio-streaming-catalogs/compose.yaml
   - apps/stremio-trakt-addon/compose.yaml
   - apps/stremthru/compose.yaml
   - apps/syncribullet/compose.yaml
   #- apps/tandoor/compose.yaml
-  #- apps/tautulli/compose.yaml
-  #- apps/thelounge/compose.yaml
-  - apps/tmdb-addon/compose.yaml
-  - apps/tmdb-collections/compose.yaml
-  #- apps/torbox-manager/compose.yaml
-  #- apps/torbox-media-center/compose.yaml
+  - apps/torbox-manager/compose.yaml
+  - apps/torbox-media-center/compose.yaml
   - apps/traefik/compose.yaml
   - apps/tweakio/compose.yaml
  # - apps/uptime-kuma/compose.yaml
  # - apps/vaultwarden/compose.yaml
-#  - apps/wallos/compose.yaml
   - apps/warp/compose.yaml
   - apps/watchtower/compose.yaml
- # - apps/webstreamr/compose.yaml
-#  - apps/wests-scripts/compose.yaml
-#  - apps/yamtrack/compose.yaml
+  - apps/yamtrack/compose.yaml
   - apps/zilean/compose.yaml
 #  - apps/zipline/compose.yaml
   # Uncomment if you are using zurg and comment out decypharr
