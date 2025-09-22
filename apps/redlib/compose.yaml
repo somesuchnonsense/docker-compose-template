@@ -20,6 +20,11 @@ services:
       - "traefik.http.routers.redlib.tls.certresolver=letsencrypt"
       - "traefik.http.routers.redlib.middlewares=authelia@docker"
       - "traefik.http.services.redlib.loadbalancer.server.port=8080"
+      - homepage.group=Misc
+      - homepage.description=Reddit frontend.
+      - homepage.name=Redlib
+      - homepage.icon=redlib
+      - homepage.href=https://${REDLIB_HOSTNAME?}
     healthcheck:
       test: ["CMD", "wget", "--spider", "-q", "--tries=1", "http://localhost:8080/settings"]
       interval: 15s

@@ -1,0 +1,27 @@
+services:
+  bookshelf:
+    container_name: bookshelf
+    image: ghcr.io/pennydreadful/bookshelf:hardcover-v0.4.20.91
+    volumes:
+      - ${DOCKER_DATA_DIR}/Bookshelf/config:/config
+      - /mnt:/mnt:rslave
+    expose:
+      - 8787
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.bookshelf.rule=Host(`${BOOKSHELF_HOSTNAME?}`)"
+      - "traefik.http.routers.bookshelf.entrypoints=websecure"
+      - "traefik.http.routers.bookshelf.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.bookshelf.middlewares=authelia@docker"
+      - homepage.group=Arrs
+      - homepage.name=Bookshelf
+      - homepage.icon=readarr
+      - homepage.href=https://${BOOKSHELF_HOSTNAME?}
+      - homepage.widget.type=readarr
+      - homepage.widget.url=http://bookshelf:8787
+      - homepage.widget.key=325609846332434e973a91b31e566dfc
+      - homepage.widget.fields=["wanted", "queued", "bookes"] # optional
+    profiles:
+      - bookshelf
+      - audiobooks
+      - all

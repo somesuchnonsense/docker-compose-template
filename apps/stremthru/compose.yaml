@@ -16,6 +16,11 @@ services:
       - "traefik.http.routers.stremthru.tls.certresolver=letsencrypt"
       - "traefik.http.routers.stremthru.middlewares=authelia@docker"
       - "traefik.http.services.stremthru.loadbalancer.server.port=8080"
+      - homepage.group=Stremio
+      - homepage.name=StremThru
+      - homepage.href=https://${STREMTHRU_HOSTNAME?}
+      - homepage.icon=https://emojiapi.dev/api/v1/sparkles/256.png
+      - homepage.description=Companion suite for Stremio.
     profiles:
       - stremthru
       - all

@@ -17,6 +17,11 @@ services:
       - "traefik.http.routers.jackett.entrypoints=websecure"
       - "traefik.http.routers.jackett.tls.certresolver=letsencrypt"
       - "traefik.http.routers.jackett.middlewares=authelia@docker"
+      - homepage.group=Arrs
+      - homepage.description=Torrent indexer.
+      - homepage.name=Jackett
+      - homepage.icon=jackett
+      - homepage.href=https://${JACKETT_HOSTNAME?}
     healthcheck:
       test: curl -f http://localhost:9117/health 
       interval: 30s

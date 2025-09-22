@@ -15,6 +15,16 @@ services:
       - "traefik.http.routers.sonarr.tls.certresolver=letsencrypt"
       - "traefik.http.routers.sonarr.middlewares=authelia@docker"
       - "traefik.http.services.sonarr.loadbalancer.server.port=8989"
+      - homepage.group=Arrs
+      - homepage.description=TV show manager.
+      - homepage.name=Sonarr
+      - homepage.icon=sonarr
+      - homepage.href=https://${SONARR_HOSTNAME?}      
+      - homepage.widget.type=sonarr
+      - homepage.widget.url=http://sonarr:8989
+      - homepage.widget.key=7ff76f9499094882828cb59e32123e2c
+      - homepage.widget.fields=["wanted", "queued", "series"] # optional
+      - homepage.widget.enableQueue=true
     volumes:
       - /mnt:/mnt:rslave
       - ${DOCKER_DATA_DIR}/sonarr/default:/config
@@ -29,6 +39,7 @@ services:
       retries: 5
       start_period: 10s
     profiles:
+      - sonarr
       - all
 
 #  sonarr4k:

@@ -17,6 +17,11 @@ services:
       - "traefik.http.routers.dash.entrypoints=websecure"
       - "traefik.http.routers.dash.tls.certresolver=letsencrypt"
       - "traefik.http.routers.dash.middlewares=authelia@docker"
+      - homepage.name=dash.
+      - homepage.group=Management
+      - homepage.desc=A modern Server dashboard.
+      - homepage.href=https://${DASHDOT_HOSTNAME?}
+      - homepage.icon=dashdot
     profiles:
       - dash
       - all

@@ -1,6 +1,6 @@
 id: debridio
 name: Debridio
-description: "Debridio API for *arr apps. This will not work with Stremio addons but will work for Jellyfin, Plex, and other similar apps."
+description: "Debridio API"
 language: en-US
 type: private
 encoding: UTF-8

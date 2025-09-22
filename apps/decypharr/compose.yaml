@@ -20,17 +20,25 @@ services:
       - ${DOCKER_DATA_DIR}/decypharr:/app
       - ./config.json:/app/config.json
     labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.decypharr.rule=Host(`${DECYPHARR_HOSTNAME?}`)"
-      - "traefik.http.routers.decypharr.entrypoints=websecure"
-      - "traefik.http.routers.decypharr.tls.certresolver=letsencrypt"
-      - "traefik.http.routers.decypharr.middlewares=authelia@docker"
-      - "traefik.http.services.decypharr.loadbalancer.server.port=8282"
+      - traefik.enable=true
+      - traefik.http.routers.decypharr.rule=Host(`${DECYPHARR_HOSTNAME?}`)
+      - traefik.http.routers.decypharr.entrypoints=websecure
+      - traefik.http.routers.decypharr.tls.certresolver=letsencrypt
+      - traefik.http.routers.decypharr.middlewares=authelia@docker
+      - traefik.http.services.decypharr.loadbalancer.server.port=8282
+      - homepage.name=Decypharr
+      - homepage.group=Arrs
+      - homepage.description=Decypharr service.
+      - homepage.href=https://${DECYPHARR_HOSTNAME?}
+      - homepage.icon=https://raw.githubusercontent.com/sirrobot01/decypharr/refs/heads/main/pkg/web/assets/images/favicon/android-chrome-192x192.png
+    profiles:
+      - decypharr
+      - sonarr
+      - radarr
+      - readarr
+      - all
     healthcheck:
-      test: ["CMD", "/usr/bin/healthcheck", "--config", "/app/"]
+      test: [CMD, /usr/bin/healthcheck, --config, /app/]
       interval: 10s
       timeout: 10s
       retries: 3
-    profiles:
-      - decypharr
-      - all

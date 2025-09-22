@@ -2,7 +2,10 @@ services:
   traefik:
     image: traefik:v3
     container_name: traefik
-    restart: unless-stopped
+    restart: unless-stopped    
+    dns:
+      - 8.8.8.8
+      - 1.1.1.1
     environment:
       - TZ=${TZ:-UTC}
     ports:
@@ -69,6 +72,11 @@ services:
       - "traefik.http.routers.api.tls.certresolver=letsencrypt"
       - "traefik.http.routers.api.service=api@internal"
       - "traefik.http.routers.api.middlewares=authelia@docker"
+      - homepage.name=Traefik
+      - homepage.icon=traefik
+      - homepage.href=https://${TRAEFIK_HOSTNAME?}
+      - homepage.description=Reverse proxy / Load balancer.
+      - homepage.group=Management
     healthcheck:
       test: ["CMD", "traefik", "healthcheck", "--ping"]
       interval: 10s

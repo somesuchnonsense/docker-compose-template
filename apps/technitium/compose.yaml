@@ -1,5 +1,5 @@
 services:
-  dns-server:
+  technitium:
     container_name: technitium
     hostname: technitium
     image: technitium/dns-server:latest
@@ -24,7 +24,7 @@ services:
       - DNS_SERVER_WEB_SERVICE_HTTP_PORT=5380
       - DNS_SERVER_FORWARDERS=1.1.1.1,8.8.8.8
       - DNS_SERVER_DOMAIN=dns-server #The primary domain name used by this DNS Server to identify itself.
-      #- DNS_SERVER_ADMIN_PASSWORD=password #DNS web console admin user password.
+      - DNS_SERVER_ADMIN_PASSWORD=password #DNS web console admin user password.
       # - DNS_SERVER_ADMIN_PASSWORD_FILE=password.txt #The path to a file that contains a plain text password for the DNS web console admin user.
       # - DNS_SERVER_PREFER_IPV6=false #DNS Server will use IPv6 for querying whenever possible with this option enabled.
       - DNS_SERVER_WEB_SERVICE_LOCAL_ADDRESSES=0.0.0.0 #Comma separated list of network interface IP addresses that you want the web service to listen on for requests. The "172.17.0.1" address is the built-in Docker bridge. The "[::]" is the default value if not specified. Note! This must be used only with "host" network mode.
@@ -55,6 +55,11 @@ services:
       - "traefik.http.routers.technitium.tls.certresolver=letsencrypt"
       - "traefik.http.services.technitium.loadbalancer.server.port=5380"
       - "traefik.http.routers.technitium.middlewares=authelia@docker"
+      - homepage.name=Technitium
+      - homepage.icon=technitium
+      - homepage.href=https://${TECHNITIUM_HOSTNAME?}
+      - homepage.description=DNS server.
+      - homepage.group=Management
     profiles:
       - technitium
       - all

@@ -46,6 +46,10 @@ services:
       - "traefik.http.routers.syncribullet.tls.certresolver=letsencrypt"
       - "traefik.http.services.syncribullet.loadbalancer.server.port=3000"
       - "traefik.http.routers.syncribullet.middlewares=authelia@docker"
+      - homepage.group=Stremio
+      - homepage.name=SyncriBullet
+      - homepage.href=https://${SYNCRIBULLET_HOSTNAME?}
+      - homepage.icon=https://raw.githubusercontent.com/aliyss/syncribullet/master/public/favicon.ico
     healthcheck:
       test:
         [

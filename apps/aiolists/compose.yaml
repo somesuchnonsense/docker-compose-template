@@ -15,6 +15,11 @@ services:
       - "traefik.http.routers.aiolists.entrypoints=websecure"
       - "traefik.http.routers.aiolists.tls.certresolver=letsencrypt"
       - "traefik.http.routers.aiolists.middlewares=authelia@docker"
+      - homepage.name=AIOLists
+      - homepage.group=Stremio
+      - homepage.descrption=All-In-One lists add-on for Stremio.
+      - homepage.href=https://${AIOLISTS_HOSTNAME?}
+      - homepage.icon=stremio
     profiles:
       - aiolists
       - stremio

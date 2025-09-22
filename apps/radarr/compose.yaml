@@ -19,9 +19,19 @@ services:
       - "traefik.http.routers.radarr.tls.certresolver=letsencrypt"
       - "traefik.http.routers.radarr.middlewares=authelia@docker"
       - "traefik.http.services.radarr.loadbalancer.server.port=7878"
-#    depends_on:
-#      decypharr:
-#        condition: service_healthy
+      - homepage.group=Arrs
+      - homepage.name=Radarr
+      - homepage.icon=radarr
+      - homepage.href=https://${RADARR_HOSTNAME?}
+      - homepage.description=Movie manager.
+      - homepage.widget.type=radarr
+      - homepage.widget.url=http://radarr:7878
+      - homepage.widget.key=e5fccf7f018d4dceb522a58be4cabf14
+      - homepage.widget.fields=["wanted", "missing", "queued", "movies"] # optional
+      - homepage.widget.enableQueue=true
+    depends_on:
+      decypharr:
+        condition: service_healthy
     healthcheck:
       test: ["CMD-SHELL", "curl -s http://localhost:7878/ping | grep -q '\"status\": \"OK\"' || exit 1"]
       interval: 1m

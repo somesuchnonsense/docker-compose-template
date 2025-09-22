@@ -1,6 +1,6 @@
 services:
   authelia:
-    container_name: 'authelia'
+    container_name: authelia
     image: 'authelia/authelia'
     restart: 'unless-stopped'
     user: $PUID:$PGID
@@ -47,6 +47,8 @@ services:
       TEMPLATE_ACTUAL_BUDGET_HOSTNAME: ${ACTUAL_BUDGET_HOSTNAME?}
       TEMPLATE_TANDOOR_HOSTNAME: ${TANDOOR_HOSTNAME?}
       TEMPLATE_TECHNITIUM_HOSTNAME: ${TECHNITIUM_HOSTNAME?}
+      TEMPLATE_OBSIDIAN_LIVESYNC_HOSTNAME: ${OBSIDIAN_LIVESYNC_HOSTNAME?}
+      TEMPLATE_AUDIOBOOKSHELF_HOSTNAME: ${OBSIDIAN_LIVESYNC_HOSTNAME?}
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.authelia.rule=Host(`${AUTHELIA_HOSTNAME?}`)"

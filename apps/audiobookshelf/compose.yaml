@@ -1,0 +1,46 @@
+services:
+  audiobookshelf:
+    container_name: audiobookshelf
+    image: ghcr.io/advplyr/audiobookshelf:latest
+    volumes:
+      - /mnt/media/audiobooks:/audiobooks
+      - /mnt/media/podcasts:/podcasts
+      - ${DOCKER_DATA_DIR}/audiobookshelf/config:/config
+      - ${DOCKER_DATA_DIR}/audiobookshelf/metadata:/metadata
+    environment:
+      - TZ=${TZ:-Etc/UTC}
+    labels:
+      # Enable Traefik for this service
+      - "traefik.enable=true"
+
+      # Router for the mobile API
+      - "traefik.http.routers.audiobookshelf_api.rule=Host(`${AUDIOBOOKSHELF_HOSTNAME}`) && PathPrefix(`/api`)"
+      - "traefik.http.routers.audiobookshelf_api.entrypoints=websecure"
+      - "traefik.http.routers.audiobookshelf_api.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.audiobookshelf_api.service=audiobookshelf"
+      - "traefik.http.routers.audiobookshelf_api.priority=2" # Higher priority for more specific rule
+
+      # Router for the web UI
+      - "traefik.http.routers.audiobookshelf_web.rule=Host(`${AUDIOBOOKSHELF_HOSTNAME}`)"
+      - "traefik.http.routers.audiobookshelf_web.entrypoints=websecure"
+      - "traefik.http.routers.audiobookshelf_web.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.audiobookshelf_web.middlewares=authelia@docker"
+      - "traefik.http.routers.audiobookshelf_web.service=audiobookshelf"
+      - "traefik.http.routers.audiobookshelf_web.priority=1" # Lower priority for general rule
+
+      # Service definition
+      - "traefik.http.services.audiobookshelf.loadbalancer.server.port=80"
+      - homepage.name=AudioBookshelf
+      - homepage.group=Media Servers
+      - homepage.description=Ebook and audiobook server.
+      - homepage.href=https://${AUDIOBOOKSHELF_HOSTNAME}
+      - homepage.icon=audiobookshelf
+      - homepage.widget.type=audiobookshelf
+      - homepage.widget.url=http://audiobookshelf
+      - homepage.widget.key=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJrZXlJZCI6ImVkZjcxYTQxLWY3M2MtNDAwOC1hYzIwLTczNzkyNmRjZGEzNiIsIm5hbWUiOiJIb21lcGFnZSIsInR5cGUiOiJhcGkiLCJpYXQiOjE3NTg1MDY0MDN9.k6LrGT5BIc8_p8_EjScvfWTErqmUF7jAHS5HcLbk2dk
+      - homepage.widget.fields=["podcasts", "podcastsDuration", "books", "booksDuration"]
+
+    profiles:
+      - audiobookshelf
+      - audiobooks
+      - all

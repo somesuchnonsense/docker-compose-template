@@ -3,15 +3,15 @@ include:
   - apps/aiolists/compose.yaml
   - apps/aiometadata/compose.yaml
   - apps/aiostreams/compose.yaml
-  - apps/aiostremio/compose.yaml
+ # - apps/aiostremio/compose.yaml
   - apps/arcane/compose.yaml
   - apps/authelia/compose.yaml
 #  - apps/autosync/compose.yaml
 #  - apps/bazarr/compose.yaml
 #  - apps/beszel/compose.yaml
 #  - apps/borgmatic/compose.yaml
-  - apps/byparr/compose.yaml
-  - apps/cloudflare-ddns/compose.yaml
+ # - apps/byparr/compose.yaml
+ # - apps/cloudflare-ddns/compose.yaml
   - apps/comet/compose.yaml
 #  - apps/crowdsec/compose.yaml
   - apps/dash/compose.yaml
@@ -21,8 +21,8 @@ include:
   - apps/dozzle/compose.yaml
   #- apps/easynews-plus/compose.yaml
 #  - apps/easynews-plus-plus/compose.yaml
-  - apps/homarr/compose.yaml
-  - apps/honey/compose.yaml
+ # - apps/homarr/compose.yaml
+ # - apps/honey/compose.yaml
 #  - apps/huntarr/compose.yaml
 #  - apps/iptvboss/compose.yaml
 #  - apps/it-tools/compose.yaml
@@ -56,8 +56,8 @@ include:
   - apps/stremthru/compose.yaml
   - apps/syncribullet/compose.yaml
   #- apps/tandoor/compose.yaml
-  - apps/torbox-manager/compose.yaml
-  - apps/torbox-media-center/compose.yaml
+ # - apps/torbox-manager/compose.yaml
+ # - apps/torbox-media-center/compose.yaml
   - apps/traefik/compose.yaml
   - apps/tweakio/compose.yaml
  # - apps/uptime-kuma/compose.yaml
@@ -67,15 +67,12 @@ include:
   - apps/yamtrack/compose.yaml
   - apps/zilean/compose.yaml
 #  - apps/zipline/compose.yaml
-  # Uncomment if you are using zurg and comment out decypharr
-  # There is also a way to use both together, but it requires 2 rclone instances
-  # To use both, update Zurg's rclone service name and its container name to rclone_zurg
-  # You will also need to change Zurg's rclone's `- apps//mnt/remote/realdebrid:/data:rshared` to `- apps//mnt/remote/zurg:/data:rshared`
-  # - apps/zurg/compose.yaml
-  # same as above for using debridav, Uncomment debridav and comment out decypharr and zurg
-  # - apps/debridav/compose.yaml
   - apps/obsidian-livesync/compose.yaml
   - apps/technitium/compose.yaml
+  - apps/audiobookshelf/compose.yaml
+ # - app/storytellerr/compose.yaml
+  - apps/bookshelf/compose.yaml
+  - apps/homepage/compose.yaml
 networks:
   default:
     name: ${DOCKER_NETWORK:-aio_default}

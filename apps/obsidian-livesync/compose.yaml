@@ -15,14 +15,27 @@ services:
       - "traefik.http.routers.obsidian-livesync.rule=Host(`${OBSIDIAN_LIVESYNC_HOSTNAME?}`)"
       - "traefik.http.routers.obsidian-livesync.entrypoints=websecure"
       - "traefik.http.routers.obsidian-livesync.tls.certresolver=letsencrypt"
-      - "traefik.http.routers.obsidian-livesync.middlewares=obsidian-cors@docker"
-      - "traefik.http.services.obsidian-livesync.loadbalancer.server.port=5984"
+      # CORS headers
       - "traefik.http.middlewares.obsidian-cors.headers.accesscontrolallowmethods=GET,PUT,POST,HEAD,DELETE,OPTIONS"
       - "traefik.http.middlewares.obsidian-cors.headers.accesscontrolallowheaders=accept,authorization,content-type,origin,referer"
       - "traefik.http.middlewares.obsidian-cors.headers.accesscontrolalloworiginlist=app://obsidian.md,capacitor://localhost,http://localhost"
       - "traefik.http.middlewares.obsidian-cors.headers.accesscontrolmaxage=3600"
       - "traefik.http.middlewares.obsidian-cors.headers.addvaryheader=true"
       - "traefik.http.middlewares.obsidian-cors.headers.accessControlAllowCredentials=true"
+
+      # Pass through Authorization header to CouchDB
+      - "traefik.http.middlewares.obsidian-forwardauth.headers.customrequestheaders.Authorization="
+
+      # Tell Traefik which port CouchDB listens on
+      - "traefik.http.services.obsidian-livesync.loadbalancer.server.port=5984"
+
+      - "traefik.http.routers.obsidian-livesync.middlewares=authelia@docker,obsidian-forwardauth,obsidian-cors@docker"
+      - homepage.name=Obsidian LiveSync
+      - homepage.icon=obsidian
+      - homepage.href=https://${OBSIDIAN_LIVESYNC_HOSTNAME?}
+      - homepage.description=Self-hosted sync server for Obsidian.md
+      - homepage.group=Misc
+
     profiles:
       - all
       - obsidian-livesync

@@ -11,6 +11,11 @@ services:
       - "traefik.http.routers.addon-manager.entrypoints=websecure"
       - "traefik.http.routers.addon-manager.tls.certresolver=letsencrypt"
       - "traefik.http.routers.addon-manager.middlewares=authelia@docker"
+      - homepage.name=Stremio Addon Manager
+      - homepage.group=Stremio
+      - homepage.description=Stremio add-on for torrents.
+      - homepage.href=https://${ADDON_MANAGER_HOSTNAME?}
+      - homepage.icon=https://addon-manager.somesuchnonsense.cc/logo.png
     profiles:
       - addon-manager
       - stremio

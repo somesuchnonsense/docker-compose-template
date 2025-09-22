@@ -19,6 +19,11 @@ services:
       - "traefik.http.routers.stremio-ai-search.tls.certresolver=letsencrypt"
       - "traefik.http.routers.stremio-ai-search.middlewares=authelia@docker"
       - "traefik.http.services.stremio-ai-search.loadbalancer.server.port=7000"
+      - homepage.name=Stremio AI Search
+      - homepage.group=Stremio
+      - homepage.description=AI Search add-on for Stremio.
+      - homepage.href=https://${STREMIO_AI_SEARCH_HOSTNAME?}
+      - homepage.icon=stremio
     profiles:
       - stremio-ai-search
       - all

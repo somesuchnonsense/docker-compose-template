@@ -22,3 +22,26 @@ users:
         disabled: false
         address: null
         extra: {}
+    COUCHDB_USER:
+        password: "$argon2id$v=19$m=65536,t=3,p=4$2fMy3fwKve3ELud6If0qeQ$9M+h4mfVhMV0tI73xWnuFeiDM61igYAvxChCQV+GQjs"
+        displayname: COUCHDB_USER
+        email: onlyelliot@gmail.com
+        groups:
+            - admins
+            - couchdb
+        given_name: ""
+        middle_name: ""
+        family_name: ""
+        nickname: ""
+        gender: ""
+        birthdate: ""
+        website: ""
+        profile: ""
+        picture: ""
+        zoneinfo: ""
+        locale: ""
+        phone_number: ""
+        phone_extension: ""
+        disabled: false
+        address: null
+        extra: {}

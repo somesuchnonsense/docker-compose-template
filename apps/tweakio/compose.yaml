@@ -1,18 +1,18 @@
 services:
   tweakio:
     image: varthe/tweakio:latest
-    container_name: tweakio
+    container_name: tweakio    
     environment:
-      TMDB_API_KEY: f810a6b8ca9372fef1f8204c3bc37f0d # Optional but recommended for best results. See https://www.themoviedb.org/settings/api
+      TMDB_API_KEY: "f810a6b8ca9372fef1f8204c3bc37f0d" # Optional but recommended for best results. See https://www.themoviedb.org/settings/api
       DEBUG: false
+    restart: unless-stopped    
     ports:
       - "3185:3185"
-    networks:
-      - tweakio_network
+    user: $PUID:$PGID
     profiles:
       - all
       - tweakio
-
-networks:
-  tweakio_network:
-    external: true
+    depends_on:
+      warp:
+        condition: service_healthy
+        restart: true

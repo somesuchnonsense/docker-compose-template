@@ -3,20 +3,31 @@ services:
     image: ghcr.io/ofkm/arcane:latest
     container_name: arcane
     restart: unless-stopped
+    ports:
+      - "3552:3552"
     expose:
-      - 3000
+      - 3552      
+    env_file:
+      - .env
     environment:
-      - APP_ENV=production
       - PUID=${PUID}
-      - PGID=${PGID}
-      - PUBLIC_SESSION_SECRET=${PUBLIC_SESSION_SECRET?}
+      - PGID=${PGID}      
+      - ENCRYPTION_KEY=${ENCRYPTION_KEY}
+      - JWT_SECRET=${JWT_SECRET}
+      - ENVIRONMENT=production
+      - APP_URL=${APP_URL}
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.arcane.rule=Host(`${ARCANE_HOSTNAME?}`)"
       - "traefik.http.routers.arcane.entrypoints=websecure"
       - "traefik.http.routers.arcane.tls.certresolver=letsencrypt"
-      - "traefik.http.services.arcane.loadbalancer.server.port=3000"
+      - "traefik.http.services.arcane.loadbalancer.server.port=3552"
       - "traefik.http.routers.arcane.middlewares=authelia@docker"
+      - homepage.name=Arcane
+      - homepage.group=Management
+      - homepage.description=Docker management interface.
+      - homepage.href=https://${ARCANE_HOSTNAME?}
+      - homepage.icon=arcane
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ${DOCKER_DATA_DIR}/arcane:/app/data

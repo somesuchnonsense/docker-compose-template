@@ -19,6 +19,15 @@ services:
       - "traefik.http.routers.prowlarr.entrypoints=websecure"
       - "traefik.http.routers.prowlarr.tls.certresolver=letsencrypt"
       - "traefik.http.routers.prowlarr.middlewares=authelia@docker"
+      - homepage.name=Prowlarr
+      - homepage.group=Arrs
+      - homepage.description=Indexer manager.
+      - homepage.href=https://${PROWLARR_HOSTNAME?}
+      - homepage.icon=prowlarr
+      - homepage.widget.type=prowlarr
+      - homepage.widget.url=http://prowlarr:9696
+      - homepage.widget.key=d34149dd0f654ace8b3c3e84ce64e430
+      - homepage.widget.fields=["numberOfGrabs", "numberOfQueries", "numberOfFailGrabs", "numberOfFailQueries"]. # optional
     healthcheck:
       test: curl -f http://localhost:9696/ping
       interval: 30s

@@ -105,7 +105,12 @@ server:
     authz:
       forward-auth:
         implementation: 'ForwardAuth'
-        # authn_strategies: []
+        authn_strategies:
+          - name: 'HeaderAuthorization'
+            schemes:
+              - 'Basic'
+            scheme_basic_cache_lifespan: 0
+          - name: 'CookieSession'
       # ext-authz:
         # implementation: 'ExtAuthz'
         # authn_strategies: []
@@ -121,7 +126,7 @@ server:
 ##
 log:
   ## Level of verbosity for logs: info, debug, trace.
-  level: 'info'
+  level: 'debug'
 
   ## Format the logs are written as: json, text.
   format: 'text'
@@ -767,8 +772,18 @@ access_control:
         - '^/media/.*$'
         - '^/openapi/.*$' 
       policy: 'bypass'
-      
-    - domain: '{{ env "TEMPLATE_OBSIDIAN_LIVESYNC_HOSTNAME" }}'
+
+    - domain: 'obsidian-livesync.somesuchnonsense.cc'
+      resources:
+        - '^/.*$'
+        - '^/api/authz/forward-auth.*$'
+        - '/base-vault/_local/obsidian_livesync_sync_parameters'
+      methods:
+      policy: bypass
+    - domain: '{{ env "TEMPLATE_AUDIOBOOKSHELF_HOSTNAME" }}'
+      resources:
+        - '^/api/.*$'        
+        - '^/api([/?].*)?$'
       policy: 'bypass'
 
     - domain: '{{ env "TEMPLATE_TECHNITIUM_HOSTNAME" }}'

@@ -13,6 +13,11 @@ services:
       - "traefik.http.routers.aiostreams.entrypoints=websecure"
       - "traefik.http.routers.aiostreams.tls.certresolver=letsencrypt"
       - "traefik.http.routers.aiostreams.middlewares=authelia@docker"
+      - homepage.name=AIOStreams
+      - homepage.group=Stremio
+      - homepage.descrption=All-In-One streaming add-on for Stremio.
+      - homepage.href=https://${AIOSTREAMS_HOSTNAME?}
+      - homepage.icon=https://raw.githubusercontent.com/Viren070/AIOStreams/refs/heads/main/packages/frontend/public/assets/logo.png
     volumes:
       - ${DOCKER_DATA_DIR}/aiostreams:/app/data
     profiles:

@@ -1,0 +1,25 @@
+services:
+  storyteller:
+    image: registry.gitlab.com/storyteller-platform/storyteller:latest
+    volumes:
+      - ${DOCKER_DATA_DIR}/Storyteller:/data:rw
+      - /mnt/media/books:/library:rw
+    environment:
+      - STORYTELLER_SECRET_KEY=$STORYTELLER_SECRET_KEY
+    ports:
+      - "8001:8001"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.storyteller.rule=Host(`${STORYTELLER_HOSTNAME?}`)"
+      - "traefik.http.routers.storyteller.entrypoints=websecure"
+      - "traefik.http.routers.storyteller.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.storyteller.middlewares=authelia@docker"
+      - homepage.name=Storyteller
+      - homepage.icon=storyteller
+      - homepage.href=https://${STORYTELLER_HOSTNAME?}
+      - homepage.description=Audiobook server.
+      - homepage.group=Media Servers
+    profiles:
+      - storyteller
+      - audiobooks
+      - all
